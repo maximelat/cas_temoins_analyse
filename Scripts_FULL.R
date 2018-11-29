@@ -138,7 +138,7 @@ print(a, vp = vplayout(2,4))
 
 
 
-dev.print(device = pdf, file = gsub(" ","",paste("./figs/",DATASET,"/Synthese/synthese+.pdf")), bg="white")
+dev.print(device = pdf, file = gsub(" ","",paste("./figs/",DATASET,"/synthese/synthese+.pdf")), bg="white")
 return(
 
 )

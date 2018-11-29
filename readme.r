@@ -19,16 +19,17 @@
 
 # permet de lancer l'analyse complète du fichier exemple.csv fournit
 source("scriptRquery.r")
-#permet de lancer analyse+ sur de nouveaux jeux de données "exemple.csv" et les fichiers 1 à 7 
-donnees <- FULLBis("exemple")
-
+#permet de lancer analyse+ sur de nouveaux jeux de données "nouvel_exemple.csv" et les fichiers 1 à 7
+# les nouveaux jeux de données doivent se trouver dans le dossier rda 
+# la sortie des résultats s'effectue de le dossier figs 
+donnees <- FULLBis("nouvel_exemple")
 Patients <- na.omit(donnees$Patients)
 Temoins <- na.omit(donnees$Temoins)
-full(Patients , Temoins, "exemple")
+full(Patients , Temoins, "nouvel_exemple")
 
 # Permet de créer l'analyse synthese++ le plus efficace 
 source("Scripts_FULLRquery.r")
-full(Patients , Temoins, "exemple",F,F)
+full(Patients , Temoins, "nouvel_exemple",F,F)
 
 #chaque test issus de Scripts_FULL.R
 Shapishapo(Patients)

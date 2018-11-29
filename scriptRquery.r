@@ -162,23 +162,34 @@ dev.print(device = pdf, file = gsub(" ","",paste("./figs/",DATASET,"/5_ROC-",DAT
 
 ######  6   ### density plot#####
 
-densityplot <- function(Patients,Temoins) {
+showdensityplot <- function(Patients,Temoins){ 
   
-  dada <- data.frame(Echantillon = c(rep("Temoins",length(Temoins)),rep("Patients",length(Patients))), valeurs = c( na.omit(Temoins),na.omit(Patients)))
+  densityplot <- function(Patients,Temoins) {
+    
+    dada <- data.frame(Echantillon = c(rep("Temoins",length(Temoins)),rep("Patients",length(Patients))), valeurs = c( na.omit(Temoins),na.omit(Patients)))
+    
+    
+    dada %>% 
+      ggplot(aes(valeurs,color = Echantillon,fill = Echantillon)) + 
+      labs( x = "Données", y = "Densité",
+            title = "Répartition des données ")+
+      geom_density(aes(valeurs, color = Echantillon,fill = Echantillon), alpha = 0.2)
+    
+  }
   
+  a <- densityplot(Patients,Temoins)
   
-  dada %>% 
-    ggplot(aes(valeurs,color = Echantillon,fill = Echantillon)) + 
-    labs( x = "Données", y = "Densité",
-          title = "Répartition des données ")+
-    geom_density(aes(valeurs, color = Echantillon,fill = Echantillon), alpha = 0.2)
+  vplayout <- function(x, y) viewport(layout.pos.row = x, layout.pos.col = y)
   
+  pushViewport(viewport(layout = grid.layout(1, 1)))
   
+  print(a, vp = vplayout(1,1))
+  return()
 }
-
-densityplot(Patients,Temoins)
+grid.newpage()
+showdensityplot(Patients,Temoins)
 dev.print(device = pdf, file = gsub(" ","",paste("./figs/",DATASET,"/6_density_plot-",DATASET,".pdf")), bg="white")
-
+grid.newpage()
 
 
 
