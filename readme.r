@@ -20,20 +20,24 @@ Avant tout
 # permet de lancer l'analyse complète du fichier exemple.csv fournit
 source("scriptRquery.r")
 #permet de lancer analyse+ sur de nouveaux jeux de données "exemple.csv" et les fichiers 1 à 7 
-donnees <- FULLBis(paste("exemple"))
+donnees <- FULLBis("exemple")
 
 Patients <- na.omit(donnees$Patients)
 Temoins <- na.omit(donnees$Temoins)
 full(Patients , Temoins, "exemple")
 
-# Permet de réer l'analyse synthese++
+# Permet de créer l'analyse synthese++ le plus efficace 
 source("Scripts_FULLRquery.r")
 full(Patients , Temoins, "exemple",F,F)
 
 #chaque test issus de Scripts_FULL.R
-showdensityplot(Patients,Temoins)
-Shapishapo(Echantillon)
-AB(Echantillon)
-Histogramme(Echantillon)
+Shapishapo(Patients)
+Shapishapo(Temoins)
+AB(Patients)
+AB(Temoins)
+Histogramme(Patients)
+Histogramme(Temoins)
 Student(Patients,Temoins)
 ROC(Patients,Temoins)
+showdensityplot(Patients,Temoins)
+

@@ -2,16 +2,16 @@ FULLBis<-function(DATASET){
 
 ##1###########################Import de données ###########################################################
 DATASET=gsub(" ","",paste(DATASET,".csv"))
-tableauFULL=read.table(DATASET,header=T,sep="\t")
+tableauFULL=read.table(gsub(" ","",paste("./rda/",DATASET)),header=T,sep="\t")
+                        
 
 require (ROCR); require(gplots) ; require(stats) ; require(utils) ; require(splines) ; require(pROC) ; require(Matrix) ; require(MASS) ; require(methods) ; require(grDevices) ; require(graphics) ; require(gplots) ; require(datasets)
 
 source("./testSWW.R")
 
 DATASET=gsub(" ","",gsub(".csv","",paste(DATASET,"")))
-
-dir.create(DATASET)
-dir.create(gsub(" ","",paste("./",DATASET,"/synthese")))
+dir.create(gsub(" ","",paste("./figs/",DATASET,"/")))
+dir.create(gsub(" ","",paste("./figs/",DATASET,"/synthese")))
 
 
 ##2############################# import colonnes ###########################################################
@@ -51,7 +51,7 @@ qqnorm(Patients, ylab="Quartiles échantillons",xlab=p.value.Patients,main="Pati
 
 
 
-dev.print(device = pdf, file = gsub(" ","",paste("./",DATASET,"/1_QQplot-",DATASET,".pdf")), bg="white")
+dev.print(device = pdf, file = gsub(" ","",paste("./figs/",DATASET,"/1_QQplot-",DATASET,".pdf")), bg="white")
 
 ##3################# TEST de normalité shapiro test si p-value<0,05 alors non normalité #########################
 #shapiro test#
@@ -61,7 +61,7 @@ attribution.Test=tests.SWW(Temoins, Patients)
 attribution.Test.T=attribution.Test$Test
 attribution.Test.pvalue=attribution.Test$res[3]
 
-dev.print(device = pdf, file = gsub(" ","",paste("./",DATASET,"/Synthese/Synthese-Patient_Temoins-",DATASET,".pdf")), bg="white")
+dev.print(device = pdf, file = gsub(" ","",paste("./figs/",DATASET,"/Synthese/Synthese-Patient_Temoins-",DATASET,".pdf")), bg="white")
 
 
 ##################### Valeurs abbérantes ############
@@ -92,7 +92,7 @@ AB(Patients)
 
 
 
-dev.print(device = pdf, file = gsub(" ","",paste("./",DATASET,"/2_Valeurs abbérantes-",DATASET,".pdf")), bg="white")
+dev.print(device = pdf, file = gsub(" ","",paste("./figs/",DATASET,"/2_Valeurs abbérantes-",DATASET,".pdf")), bg="white")
 
 
 #6################### Histogrames #####################
@@ -103,7 +103,7 @@ hist(x =Temoins, ylab="",xlab="",main="Temoins", col = "green")
 hist(x =Patients, ylab="",xlab="",main="Patients", col = "orange")
 
 
-dev.print(device = pdf, file = gsub(" ","",paste("./",DATASET,"/3_Histogramme-",DATASET,".pdf")), bg="white")
+dev.print(device = pdf, file = gsub(" ","",paste("./figs/",DATASET,"/3_Histogramme-",DATASET,".pdf")), bg="white")
 
 
 
@@ -121,7 +121,7 @@ boxplot(Patients, Temoins,   main = "Box plot comparatif",names=c("Patients","T�
 
 
 
-dev.print(device = pdf, file = gsub(" ","",paste("./",DATASET,"/4_boxplotBis-",DATASET,".pdf")), bg="white")
+dev.print(device = pdf, file = gsub(" ","",paste("./figs/",DATASET,"/4_boxplotBis-",DATASET,".pdf")), bg="white")
 
 
 
@@ -158,7 +158,7 @@ cutoff = pred.U.all[1,which(pred.U.all[4,]==max(pred.U.all[4,]))]
 print(c(accuracy= acc, cutoff = cutoff))
 
 
-dev.print(device = pdf, file = gsub(" ","",paste("./",DATASET,"/5_ROC-",DATASET,".pdf")), bg="white")
+dev.print(device = pdf, file = gsub(" ","",paste("./figs/",DATASET,"/5_ROC-",DATASET,".pdf")), bg="white")
 
 ######  6   ### density plot#####
 
@@ -177,7 +177,7 @@ densityplot <- function(Patients,Temoins) {
 }
 
 densityplot(Patients,Temoins)
-dev.print(device = pdf, file = gsub(" ","",paste("./",DATASET,"/6_density_plot-",DATASET,".pdf")), bg="white")
+dev.print(device = pdf, file = gsub(" ","",paste("./figs/",DATASET,"/6_density_plot-",DATASET,".pdf")), bg="white")
 
 
 
@@ -218,7 +218,7 @@ legend("topleft",c(paste("Intercept b =",round(coef(model)[1],3)),paste("coef a 
 model<-lm(val1~val2)
 summary(model)
 
-dev.print(device = pdf, file = gsub(" ","",paste("./",DATASET,"/7_Regression_LineaireTest-",DATASET,".pdf")), bg="white")
+dev.print(device = pdf, file = gsub(" ","",paste("./figs/",DATASET,"/7_Regression_LineaireTest-",DATASET,".pdf")), bg="white")
 
 ##########
 source("Scripts_FULL.R")

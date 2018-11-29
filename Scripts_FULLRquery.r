@@ -98,7 +98,7 @@ cutoff=ROC(Patients,Témoins)
 Student(Patients,Témoins,Test.T,Test.pvalue,cutoff,logi)
 
 
-dev.print(device = pdf, file = gsub(" ","",paste("./",DATASET,"/synthese/synthese++.pdf")), bg="white")
+dev.print(device = pdf, file = gsub(" ","",paste("./figs/",DATASET,"/Synthese/synthese++.pdf")), bg="white")
 }
 
 else{
