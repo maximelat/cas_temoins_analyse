@@ -1,7 +1,7 @@
-Exemple de Comparaison de Patient témoins 
-Avant tout 
+######  Exemple de Comparaison de Patient témoins 
+##Avant tout : 
 
-# transformer virgules en points ## points virgules par tabulation ## enlever les accents ##
+# Transformer virgules en points ## points virgules par tabulation ## enlever les accents ##
 #Voir fichier exemple pour la mise en page
 # Choisir le répertoire de travail dans lequel se trouve les fichiers puis copier coller le code ci dessous
 
